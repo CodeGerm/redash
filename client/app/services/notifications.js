@@ -40,7 +40,7 @@ class NotificationsService {
     const notification = new Notification(title, {
       tag: title + content,
       body: content,
-      icon: '/images/redash_icon_small.png',
+      icon: '/images/customlogo_01.png',
     });
     setTimeout(() => {
       notification.close();

@@ -1,4 +1,4 @@
-import logoUrl from '@/assets/images/redash_icon_small.png';
+import logoUrl from '@/assets/images/customlogo_01.png';
 import template from './public-dashboard-page.html';
 import './dashboard.less';
 

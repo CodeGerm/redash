@@ -1,5 +1,5 @@
 import logging
-
+import os
 from flask import abort, flash, redirect, render_template, request, url_for
 
 from flask_login import current_user, login_required, login_user, logout_user
@@ -15,8 +15,7 @@ from redash.version_check import get_latest_version
 from sqlalchemy.orm.exc import NoResultFound
 
 logger = logging.getLogger(__name__)
-
-
+custom_title = os.environ.get('CUSTOM_TITLE') or 'Redash'
 def get_google_auth_url(next_path):
     if settings.MULTI_ORG:
         google_auth_url = url_for('google_oauth.authorize_org', next=next_path, org_slug=current_org.slug)
@@ -167,6 +166,7 @@ def login(org_slug=None):
     google_auth_url = get_google_auth_url(next_path)
 
     return render_template("login.html",
+                           custom_title=custom_title,
                            org_slug=org_slug,
                            next=next_path,
                            email=request.form.get('email', ''),

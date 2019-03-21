@@ -24,6 +24,8 @@ const extensionsRelativePath = process.env.EXTENSIONS_DIRECTORY ||
   path.join("client", "app", "extensions");
 const extensionPath = fs.realpathSync(path.join(__dirname, extensionsRelativePath));
 
+require('dotenv').config();
+const customTitle = process.env.CUSTOM_TITLE || 'Redash';
 const config = {
   mode: isProduction ? "production" : "development",
   entry: {
@@ -55,6 +57,7 @@ const config = {
     new HtmlWebpackPlugin({
       template: "./client/app/index.html",
       filename: "index.html",
+      title: customTitle,
       excludeChunks: ["server"]
     }),
     new HtmlWebpackPlugin({

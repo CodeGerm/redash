@@ -1,5 +1,5 @@
 import { find } from 'lodash';
-import logoUrl from '@/assets/images/redash_icon_small.png';
+import logoUrl from '@/assets/images/customlogo_01.png';
 import template from './visualization-embed.html';
 
 const VisualizationEmbed = {

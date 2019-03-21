@@ -1,5 +1,5 @@
 from flask import g, redirect, render_template, request, url_for
-
+import os
 from flask_login import login_user
 from redash import settings
 from redash.authentication.org_resolving import current_org
@@ -9,6 +9,7 @@ from redash.tasks.general import subscribe
 from wtforms import BooleanField, Form, PasswordField, StringField, validators
 from wtforms.fields.html5 import EmailField
 
+custom_title = os.environ.get('CUSTOM_TITLE') or 'Redash'
 
 class SetupForm(Form):
     name = StringField('Name', validators=[validators.InputRequired()])
@@ -60,4 +61,4 @@ def setup():
 
         return redirect(url_for('redash.index', org_slug=None))
 
-    return render_template('setup.html', form=form)
+    return render_template('setup.html', form=form, custom_title=custom_title)

@@ -9,10 +9,11 @@ from redash.handlers import routes
 from redash.handlers.authentication import base_href
 from redash.handlers.base import org_scoped_rule
 
+custom_title = os.environ.get('CUSTOM_TITLE') or 'Redash'
 
 def render_index():
     if settings.MULTI_ORG:
-        response = render_template("multi_org.html", base_href=base_href())
+        response = render_template("multi_org.html", base_href=base_href(), custom_title=custom_title)
     else:
         full_path = safe_join(settings.STATIC_ASSETS_PATH, 'index.html')
         response = send_file(full_path, **dict(cache_timeout=0, conditional=True))

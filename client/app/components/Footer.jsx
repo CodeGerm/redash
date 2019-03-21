@@ -6,8 +6,6 @@ export function Footer() {
 
   return (
     <div id="footer">
-      <a href="https://redash.io">Redash</a>
-      {separator}
       <a href="https://redash.io/help/">Documentation</a>
       {separator}
       <a href="https://github.com/getredash/redash">Contribute</a>

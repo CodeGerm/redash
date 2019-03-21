@@ -1,6 +1,6 @@
 import logging
 logger = logging.getLogger('ldap_auth')
-
+import os
 from redash import settings
 
 from flask import flash, redirect, render_template, request, url_for, Blueprint
@@ -18,7 +18,7 @@ from redash.authentication.org_resolving import current_org
 
 
 blueprint = Blueprint('ldap_auth', __name__)
-
+custom_title = os.environ.get('CUSTOM_TITLE') or 'Redash'
 
 @blueprint.route("/ldap/login", methods=['GET', 'POST'])
 def login(org_slug=None):
@@ -50,6 +50,7 @@ def login(org_slug=None):
             flash("Incorrect credentials.")
 
     return render_template("login.html",
+                           custom_title=custom_title,
                            org_slug=org_slug,
                            next=next_path,
                            email=request.form.get('email', ''),
